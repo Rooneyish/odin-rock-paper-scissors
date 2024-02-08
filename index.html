@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let options = ["ROCK", "PAPER", "SCISSORS"];
+      function getComputerChoice() {
+        let output = Math.floor(Math.random() * options.length);
+        return options[output];
+      }
+
+      function winnerChecker(playerSection, computerSection) {
+        if (playerSection == computerSection) {
+          return "Draw";
+        } else if (
+          (playerSection === "ROCK" && computerSection === "SCISSORS") ||
+          (playerSection === "SCISSORS" && computerSection == "PAPER") ||
+          (playerSection == "PAPER" && computerSection == "ROCK")
+        ) {
+          return "Player";
+        } else {
+          return "Computer";
+        }
+      }
+
+      function playRound(playerSection, computerSection) {
+        const result = winnerChecker(playerSection, computerSection);
+        if (result === "Draw") {
+          return "Draw!!";
+        } else if (result === "Player") {
+          return `Player wins!! ${playerSection} beats ${computerSection}`;
+        } else {
+          return `Computer wins!! ${computerSection} beats ${playerSection}`;
+        }
+      }
+
+      function playGame() {
+        for (let i = 0; i < 5; i++) {
+          const playerSection=prompt();
+          const computerSection = getComputerChoice();
+          console.log(playRound(playerSection, computerSection));
+        }
+      }
+      playGame()
+    </script>
+  </body>
+</html>
