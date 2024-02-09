@@ -13,13 +13,13 @@
         return options[output];
       }
 
-      function winnerChecker(playerSection, computerSection) {
-        if (playerSection == computerSection) {
+      function winnerChecker(playerSelection, computerSelection) {
+        if (playerSelection.toUpperCase() == computerSelection) {
           return "Draw";
         } else if (
-          (playerSection === "ROCK" && computerSection === "SCISSORS") ||
-          (playerSection === "SCISSORS" && computerSection == "PAPER") ||
-          (playerSection == "PAPER" && computerSection == "ROCK")
+          (playerSelection.toUpperCase() === "ROCK" && computerSelection === "SCISSORS") ||
+          (playerSelection.toUpperCase() === "SCISSORS" && computerSelection === "PAPER") ||
+          (playerSelection.toUpperCase() === "PAPER" && computerSelection === "ROCK")
         ) {
           return "Player";
         } else {
@@ -27,25 +27,27 @@
         }
       }
 
-      function playRound(playerSection, computerSection) {
-        const result = winnerChecker(playerSection, computerSection);
+      function playRound(playerSelection, computerSelection) {
+        const result = winnerChecker(playerSelection, computerSelection);
         if (result === "Draw") {
           return "Draw!!";
         } else if (result === "Player") {
-          return `Player wins!! ${playerSection} beats ${computerSection}`;
+          return `Player wins!! ${playerSelection} beats ${computerSelection}`;
         } else {
-          return `Computer wins!! ${computerSection} beats ${playerSection}`;
+          return `Player losses!! ${computerSelection} beats ${playerSelection}`;
         }
       }
 
       function playGame() {
         for (let i = 0; i < 5; i++) {
-          const playerSection=prompt();
-          const computerSection = getComputerChoice();
-          console.log(playRound(playerSection, computerSection));
+          const playerSelection=prompt();
+          const computerSelection = getComputerChoice();
+          console.log(playerSelection,computerSelection)
+          console.log(playRound(playerSelection, computerSelection));
         }
       }
       playGame()
+
     </script>
   </body>
 </html>
