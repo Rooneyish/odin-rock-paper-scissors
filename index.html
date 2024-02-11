@@ -6,6 +6,12 @@
     <title>Document</title>
   </head>
   <body>
+    <div class="container" style="text-align: center;">
+      <button style="background: transparent; border: none;cursor: pointer;" value="rock" id="rock"><img src="/pngwing.com.png" width="200px" height="200px" alt=""></button>
+      <button style="background: transparent; border: none;cursor: pointer;" value="paper" id="paper"><img src="/pngwing.com (2).png" width="200px" height="200px" alt=""></button>
+      <button style="background: transparent; border: none;cursor: pointer;" value="scissors" id="scissors"><img src="/pngwing.com (1) (1).png" width="200px" height="200px" alt=""></button>
+    </div>
+    <div id="output" style="text-align: center;padding: 10px; color: rgb(15, 88, 15); background-color: bisque;"></div>
     <script>
       let options = ["ROCK", "PAPER", "SCISSORS"];
       function getComputerChoice() {
@@ -27,6 +33,7 @@
         }
       }
 
+      
       function playRound(playerSelection, computerSelection) {
         const result = winnerChecker(playerSelection, computerSelection);
         if (result === "Draw") {
@@ -38,7 +45,27 @@
         }
       }
 
-      function playGame() {
+      function clearOutput(){
+        const output=document.querySelector("#output")
+        output.innerText="";
+      }
+
+      const buttons=document.querySelectorAll('button')
+      buttons.forEach((button)=>{
+        button.addEventListener("click",function(e){
+          const playerSelection=button.value.toUpperCase()
+          const computerSelection=getComputerChoice()
+          const roundresult = playRound(playerSelection,computerSelection)
+          const output=document.querySelector("#output")
+          const div=document.createElement("div")
+          output.appendChild(div)
+          div.innerText=roundresult;
+          setTimeout(clearOutput,2000)
+        })
+      })
+
+
+     /* function playGame() {
         for (let i = 0; i < 5; i++) {
           const playerSelection=prompt();
           const computerSelection = getComputerChoice();
@@ -46,7 +73,7 @@
           console.log(playRound(playerSelection, computerSelection));
         }
       }
-      playGame()
+      playGame()*/
 
     </script>
   </body>
